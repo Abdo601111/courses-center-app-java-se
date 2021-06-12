@@ -1,0 +1,438 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ga.tc.common.ui;
+
+import com.ga.tc.authentication.bao.UserBao;
+import com.ga.tc.authentication.bao.UserBaoImpl;
+import com.ga.tc.authentication.dto.UserInfoDto;
+import com.ga.tc.authentication.ui.AllUsers;
+import com.ga.tc.authentication.ui.ChangePasswordDialog;
+import com.ga.tc.authentication.ui.CreateNewUser;
+import com.ga.tc.authentication.ui.CreateRole;
+import com.ga.tc.authentication.ui.LoginFram;
+import com.ga.tc.authentication.ui.ManageMyProfile;
+import com.ga.tc.authentication.ui.PermissionManager;
+import com.ga.tc.authentication.ui.ScreenManager;
+import com.ga.tc.common.GenericDto;
+import com.ga.tc.courses.ui.Register4Course;
+import com.ga.tc.courses.ui.CoursesManager;
+import com.ga.tc.courses.ui.Register4Course;
+import com.ga.tc.security.bao.SecurityBaoImpl;
+import com.ga.tc.security.bao.SecurityBao;
+import java.awt.ComponentOrientation;
+import java.util.Locale;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author pc
+ */
+public class MainFrame extends javax.swing.JFrame {
+    private UserBao userBusiness = new UserBaoImpl();
+    private SecurityBao securityBusiness = new SecurityBaoImpl();
+
+    public SecurityBao getSecurityBusiness() {
+        return securityBusiness;
+    }
+
+    public void setSecurityBusiness(SecurityBao securityBusiness) {
+        this.securityBusiness = securityBusiness;
+    }
+    public UserBao getUserBusiness() {
+        return userBusiness;
+    }
+
+    public void setUserBusiness(UserBao userBusiness) {
+        this.userBusiness = userBusiness;
+    }
+    private UserInfoDto userInfo;
+
+    public UserInfoDto getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfoDto userInfo) {
+        this.userInfo = userInfo;
+    }
+    /**
+     * Creates new form MainFrame
+     */
+    public MainFrame(UserInfoDto userInfo) {
+        this.userInfo = userInfo;
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Locale l = Locale.getDefault();
+        
+        if(l == Locale.ENGLISH)
+            this.applyComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        else
+            this.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        //user access list
+        //set all menus are invisible
+        jMenueAllCourses.setVisible(false);
+        jMenueAllUsers.setVisible(false);
+        jMenueApplyInCourse.setVisible(false);
+        jMenueCertificate.setVisible(false);
+        jMenueChangePassword.setVisible(false);
+
+        jMenueManageRoles.setVisible(false);
+        jMenueManageScreens.setVisible(false);
+        jMenueReports.setVisible(false);
+        jMenueRoleScreenMapping.setVisible(false);
+        jMenueUpdateProfile.setVisible(false);
+        //grant access to ONLY accssible
+        if(userInfo.getAccessibleScreens()!=null && !userInfo.getAccessibleScreens().isEmpty()){
+            for(GenericDto s:userInfo.getAccessibleScreens()){
+                switch(s.getCode()){
+                    case "USR_CR":
+                        jMenueCreateUser.setVisible(true);
+                        break;
+                    case "USR_AL":
+                        jMenueAllUsers.setVisible(true);
+                        break;
+                    case "CRS_A":
+                        jMenueAllCourses.setVisible(true);
+                        break;
+                    case "CRS_REG":
+                        jMenueApplyInCourse.setVisible(true);
+                        break;
+                    case "CRTFCT":
+                        jMenueCertificate.setVisible(true);
+                        break;
+                    case "RPRT":
+                        jMenueReports.setVisible(true);
+                        break;
+                    case "ROL_MG":
+                        jMenueManageRoles.setVisible(true);
+                        break;
+                    case "ROL_AX":
+                        jMenueRoleScreenMapping.setVisible(true);
+                        break;
+                    case "CHG_PASS":
+                        jMenueChangePassword.setVisible(true);
+                        break;
+                    case "SCRS":
+                        jMenueManageScreens.setVisible(true);
+                        break;
+                    case "PROFILE_EDT":
+                        jMenueUpdateProfile.setVisible(true);    
+                        break;
+                    default:
+                        System.out.println("Invalid Screen Code !!!");
+                }
+            }
+            
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jMenu2 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenueAllUsers = new javax.swing.JMenuItem();
+        jMenueCreateUser = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenueAllCourses = new javax.swing.JMenuItem();
+        jMenueApplyInCourse = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenueCertificate = new javax.swing.JMenuItem();
+        jMenueReports = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenueManageRoles = new javax.swing.JMenuItem();
+        jMenueManageScreens = new javax.swing.JMenuItem();
+        jMenueRoleScreenMapping = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenueUpdateProfile = new javax.swing.JMenuItem();
+        jMenueChangePassword = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+
+        jMenu2.setText("jMenu2");
+
+        jMenu7.setText("jMenu7");
+
+        jMenu9.setText("jMenu9");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com/ga/tc/common/lang"); // NOI18N
+        jMenu3.setText(bundle.getString("mf.menu.users")); // NOI18N
+
+        jMenueAllUsers.setText(bundle.getString("mf.menu.users.all")); // NOI18N
+        jMenueAllUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueAllUsersActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenueAllUsers);
+
+        jMenueCreateUser.setText(bundle.getString("mf.menu.users.new")); // NOI18N
+        jMenueCreateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueCreateUserActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenueCreateUser);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu1.setText(bundle.getString("mf.menu.courses.all")); // NOI18N
+
+        jMenueAllCourses.setText(bundle.getString("mf.menu.courses.all")); // NOI18N
+        jMenueAllCourses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueAllCoursesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenueAllCourses);
+
+        jMenueApplyInCourse.setText(bundle.getString("mf.menu.courses.register")); // NOI18N
+        jMenueApplyInCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueApplyInCourseActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenueApplyInCourse);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu4.setText(bundle.getString("mf.menu.certificates")); // NOI18N
+
+        jMenueCertificate.setText("CertificateManager");
+        jMenu4.add(jMenueCertificate);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenueReports.setText(bundle.getString("mf.menu.reports")); // NOI18N
+        jMenuBar1.add(jMenueReports);
+
+        jMenu10.setText(bundle.getString("mf.menu.security")); // NOI18N
+
+        jMenueManageRoles.setText(bundle.getString("mf.menu.security.roles")); // NOI18N
+        jMenueManageRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueManageRolesActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenueManageRoles);
+
+        jMenueManageScreens.setText(bundle.getString("mf.menu.security.screens")); // NOI18N
+        jMenueManageScreens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueManageScreensActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenueManageScreens);
+
+        jMenueRoleScreenMapping.setText(bundle.getString("mf.menu.security.mapping")); // NOI18N
+        jMenueRoleScreenMapping.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueRoleScreenMappingActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenueRoleScreenMapping);
+
+        jMenuBar1.add(jMenu10);
+
+        jMenu6.setText(bundle.getString("mf.menu.profile")); // NOI18N
+
+        jMenueUpdateProfile.setText(bundle.getString("mf.menu.profile.edit")); // NOI18N
+        jMenueUpdateProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueUpdateProfileActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenueUpdateProfile);
+
+        jMenueChangePassword.setText(bundle.getString("mf.menu.profile.change.pass")); // NOI18N
+        jMenueChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenueChangePasswordActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenueChangePassword);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu8.setText(bundle.getString("mf.menu.logout")); // NOI18N
+
+        jMenuItem8.setText("Logout");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu8);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 533, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 391, Short.MAX_VALUE)
+        );
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenueCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueCreateUserActionPerformed
+        this.setContentPane(new CreateNewUser());
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_jMenueCreateUserActionPerformed
+
+    private void jMenueAllUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueAllUsersActionPerformed
+        // TODO add your handling code here:
+        
+        this.setContentPane(new AllUsers());
+        this.validate();
+        this.repaint();
+        
+        
+    }//GEN-LAST:event_jMenueAllUsersActionPerformed
+
+    private void jMenueManageRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueManageRolesActionPerformed
+        // TODO add your handling code here:
+        this.setContentPane(new CreateRole());
+        this.validate();
+        this.repaint();
+        
+    }//GEN-LAST:event_jMenueManageRolesActionPerformed
+
+    private void jMenueAllCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueAllCoursesActionPerformed
+        this.setContentPane(new CoursesManager(userInfo));
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_jMenueAllCoursesActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        this.invalidate();
+        this.dispose();
+        LoginFram login = null;
+        try {
+            login = new LoginFram();
+            javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+            login.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(login, "Look & Feel not Found", "LAF Missing", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenueChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueChangePasswordActionPerformed
+        try{
+            ChangePasswordDialog cpDlg = new ChangePasswordDialog(this, true);
+            cpDlg.setVisible(true);
+        }catch(Exception e){
+            e.printStackTrace();        }
+    }//GEN-LAST:event_jMenueChangePasswordActionPerformed
+
+    private void jMenueApplyInCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueApplyInCourseActionPerformed
+        // TODO add your handling code here:
+        this.setContentPane(new Register4Course(userInfo));
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_jMenueApplyInCourseActionPerformed
+
+    private void jMenueUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueUpdateProfileActionPerformed
+        // TODO add your handling code here:
+        this.setContentPane(new ManageMyProfile(userInfo));
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_jMenueUpdateProfileActionPerformed
+
+    private void jMenueManageScreensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueManageScreensActionPerformed
+        // TODO add your handling code here:
+        this.setContentPane(new ScreenManager(userInfo));
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_jMenueManageScreensActionPerformed
+
+    private void jMenueRoleScreenMappingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenueRoleScreenMappingActionPerformed
+        this.setContentPane(new PermissionManager());
+        this.validate();
+        this.repaint();
+    }//GEN-LAST:event_jMenueRoleScreenMappingActionPerformed
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MainFrame().setVisible(true);
+//            }
+//        });
+//    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenueAllCourses;
+    private javax.swing.JMenuItem jMenueAllUsers;
+    private javax.swing.JMenuItem jMenueApplyInCourse;
+    private javax.swing.JMenuItem jMenueCertificate;
+    private javax.swing.JMenuItem jMenueChangePassword;
+    private javax.swing.JMenuItem jMenueCreateUser;
+    private javax.swing.JMenuItem jMenueManageRoles;
+    private javax.swing.JMenuItem jMenueManageScreens;
+    private javax.swing.JMenu jMenueReports;
+    private javax.swing.JMenuItem jMenueRoleScreenMapping;
+    private javax.swing.JMenuItem jMenueUpdateProfile;
+    // End of variables declaration//GEN-END:variables
+}

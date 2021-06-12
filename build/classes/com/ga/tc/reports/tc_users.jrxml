@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tc_users" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d61d3dd4-df3b-48bd-b87d-c94a02beff3f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="9"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     TC_USER."USR_ID" AS TC_USER_USR_ID,
+     TC_USER."USR_FULL_NAME" AS TC_USER_USR_FULL_NAME,
+     TC_USER."USR_EMAIL" AS TC_USER_USR_EMAIL,
+     TC_USER."USR_PASSWORD" AS TC_USER_USR_PASSWORD,
+     TC_USER."USR_PHONE" AS TC_USER_USR_PHONE,
+     TC_USER."USR_ADDRESS" AS TC_USER_USR_ADDRESS,
+     TC_USER."USR_LAF" AS TC_USER_USR_LAF
+FROM
+     "TC"."TC_USER" TC_USER]]>
+	</queryString>
+	<field name="TC_USER_USR_ID" class="java.math.BigDecimal"/>
+	<field name="TC_USER_USR_FULL_NAME" class="java.lang.String"/>
+	<field name="TC_USER_USR_EMAIL" class="java.lang.String"/>
+	<field name="TC_USER_USR_PASSWORD" class="java.lang.String"/>
+	<field name="TC_USER_USR_PHONE" class="java.lang.String"/>
+	<field name="TC_USER_USR_ADDRESS" class="java.lang.String"/>
+	<field name="TC_USER_USR_LAF" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="125" y="19" width="325" height="35" uuid="ce70a6f9-0059-4fdc-8ee4-571b2e1050fc"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Training Center Users]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="20" uuid="0fd1ee4b-045a-4c80-8841-a17130564211"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="79" height="20" uuid="c6771ef5-b269-491d-a1ce-47e7f264666e"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="0" width="79" height="20" uuid="9db02945-cd90-4060-93cc-6496adf697eb"/>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="0" width="79" height="20" uuid="55b80938-2974-4af9-8465-d5cb43570553"/>
+				<text><![CDATA[Password]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="0" width="79" height="20" uuid="7ffe08d6-2242-4288-956a-5f9664a1b541"/>
+				<text><![CDATA[Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="0" width="79" height="20" uuid="5735f213-8878-4247-a20a-dbe491226956"/>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="0" width="79" height="20" uuid="cd7f0236-37e4-4ca2-822c-1b5b8227924c"/>
+				<text><![CDATA[LAF]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="79" height="20" uuid="be054332-b460-47e5-87c9-9fe8d9ecf65f"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="79" height="20" uuid="63a05323-739b-4c6e-bd32-f4033e197566"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_FULL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="79" height="20" uuid="29207814-cbb1-4618-840e-2ad28261d1f0"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="79" height="20" uuid="82d52b6e-cda6-4145-b41c-1f2f28a83e54"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_PASSWORD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="79" height="20" uuid="5b193c15-8514-4d88-b1ca-71bd154728e0"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_PHONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="79" height="20" uuid="ea4b8a2d-c95d-49d8-8157-96f12adeb59a"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="79" height="20" uuid="b3a689d7-7f24-4b68-9118-075fa13b21ce"/>
+				<textFieldExpression><![CDATA[$F{TC_USER_USR_LAF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
